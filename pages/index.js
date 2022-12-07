@@ -1,33 +1,33 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import buildspaceLogo from '../assets/buildspace-logo.png';
-import { useState } from 'react';
+import Head from "next/head";
+import Image from "next/image";
+import buildspaceLogo from "../assets/buildspace-logo.png";
+import { useState } from "react";
 
 const Home = () => {
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState("");
 
-  const [apiOutput, setApiOutput] = useState('')
-  const [isGenerating, setIsGenerating] = useState(false)
+  const [apiOutput, setApiOutput] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  const callGenerateEndpoint = async () => {  
+  const callGenerateEndpoint = async () => {
     setIsGenerating(true);
-    
-    console.log("Calling OpenAI...")
-    const response = await fetch('/api/generate', {
-      method: 'POST',
+
+    console.log("Calling OpenAI...");
+    const response = await fetch("/api/generate", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ userInput }),
     });
 
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied...", output.text)
+    console.log("OpenAI replied...", output.text);
 
     setApiOutput(`${output.text}`);
     setIsGenerating(false);
-  }
+  };
 
   return (
     <div className="root">
@@ -37,18 +37,35 @@ const Home = () => {
             <h1>Healthbot</h1>
           </div>
           <div className="header-subtitle">
-            <h2> Eat Smart, Live Healthy - Unlock the Benefits of the Right Foods with Our Self proclaimed by AI System</h2>
+            <h2>
+              {" "}
+              Eat Smart, Live Healthy - Unlock the Benefits of the Right Foods
+              with Our Self proclaimed by AI System
+            </h2>
           </div>
         </div>
         <div className="prompt-container">
-          <textarea placeholder="start typing here... eg. apple or vitamin c or it can even give results for totally vague inputs like television " className="prompt-box" value={userInput} onChange={(e) =>{setUserInput(e.target.value)}} />
+          <textarea
+            placeholder="start typing here... eg. apple or vitamin c or it can even give results for totally vague inputs like television "
+            className="prompt-box"
+            value={userInput}
+            onChange={(e) => {
+              setUserInput(e.target.value);
+            }}
+          />
           <div className="prompt-buttons">
             <a
-              className={isGenerating ? 'generate-button loading' : 'generate-button'}
+              className={
+                isGenerating ? "generate-button loading" : "generate-button"
+              }
               onClick={callGenerateEndpoint}
             >
               <div className="generate">
-              {isGenerating ? <span className="loader"></span> : <p>Generate</p>}
+                {isGenerating ? (
+                  <span className="loader"></span>
+                ) : (
+                  <p>Generate</p>
+                )}
               </div>
             </a>
           </div>
@@ -65,7 +82,6 @@ const Home = () => {
             </div>
           )}
         </div>
-        
       </div>
       <div className="badge-container grow">
         <a
@@ -74,14 +90,13 @@ const Home = () => {
           rel="noreferrer"
         >
           <div className="badge">
-            <Image src={buildspaceLogo} alt="buildspace logo" />
-            <p>build with buildspace</p>
+            {/* <Image src={buildspaceLogo} alt="buildspace logo" /> */}
+            <p>built 2022</p>
           </div>
         </a>
       </div>
     </div>
   );
 };
-
 
 export default Home;
