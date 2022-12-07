@@ -21,26 +21,26 @@ const generateAction = async (req, res) => {
 
   const basePromptOutput = baseCompletion.data.choices.pop();
 
-  const secondPrompt = `Take the contents below and generate more informational content as first one
-  Title: ${req.body.userInput}
-  Table of Contents: ${basePromptOutput.text}
-  Answer:`
+  // const secondPrompt = `Take the contents below and generate more informational content as first one
+  // Title: ${req.body.userInput}
+  // Table of Contents: ${basePromptOutput.text}
+  // Answer:`
 
-  const secondPromptCompletion = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: `${secondPrompt}`,
-    // I set a higher temperature for this one. Up to you!
-    temperature: 0.8,
-	// I also increase max_tokens.
-    max_tokens: 350,
-  });
+  // const secondPromptCompletion = await openai.createCompletion({
+  //   model: 'text-davinci-003',
+  //   prompt: `${secondPrompt}`,
+  //   // I set a higher temperature for this one. Up to you!
+  //   temperature: 0.8,
+  // // I also increase max_tokens.
+  //   max_tokens: 350,
+  // });
 
-  const secondPromptOutput = secondPromptCompletion.data.choices.pop();
+  // const secondPromptOutput = secondPromptCompletion.data.choices.pop();
 
   // Send over the Prompt #2's output to our UI instead of Prompt #1's.
-  res.status(200).json({ output: secondPromptOutput });
+  // res.status(200).json({ output: secondPromptOutput });
 
-//   res.status(200).json({ output: basePromptOutput });
+  res.status(200).json({ output: basePromptOutput });
 };
 
 export default generateAction;
