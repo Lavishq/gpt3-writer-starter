@@ -85,13 +85,13 @@ const Home = () => {
       </div>
       <div className="badge-container grow">
         <a
-          href="https://buildspace.so/builds/ai-writer"
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           target="_blank"
           rel="noreferrer"
         >
           <div className="badge">
             {/* <Image src={buildspaceLogo} alt="buildspace logo" /> */}
-            <p>built 2022</p>
+            <p>don't click here</p>
           </div>
         </a>
       </div>
